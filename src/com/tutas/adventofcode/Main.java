@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.Integer.compare;
 import static java.lang.Integer.parseInt;
@@ -12,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            D3P1();
+            D3P2();
         }catch (Exception e){
 
         }
@@ -44,6 +46,56 @@ public class Main {
         System.out.println(finalGamma);
         System.out.println(finalEpsilon);
         System.out.println(finalGamma*finalEpsilon);
+    }
+
+    static void D3P2() throws FileNotFoundException, IOException{
+        int[] count = new int[12];
+        List<String> lines = new ArrayList<String>();
+        try (BufferedReader br = new BufferedReader(new FileReader("input.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                lines.add(line);
+            }
+        }
+        List<String> oxygen = new ArrayList<String>(lines);
+        List<String> carbon = new ArrayList<String>(lines);
+        for(int i = 0; i < count.length; i++){
+            count[i] = 0;
+            for (int j = 0; j < oxygen.size(); j++){
+                count[i] += oxygen.get(j).charAt(i) == '1' ? 1 : 0;
+            }
+            char value = (Math.ceil((double)(oxygen.size()) / 2)) > count[i] ? '1' : '0';
+            for(int j = 0; j < oxygen.size(); j++){
+                if(oxygen.get(j).charAt(i) != value){
+                    oxygen.remove(j);
+                    j--;
+                }
+            }
+            if(oxygen.size() == 1)
+                break;
+        }
+
+        for(int i = 0; i < count.length; i++){
+            count[i] = 0;
+            for (int j = 0; j < carbon.size(); j++){
+                count[i] += carbon.get(j).charAt(i) == '1' ? 1 : 0;
+            }
+            char value = (Math.ceil((double)(carbon.size()) / 2)) > count[i] ? '1' : '0';
+            for(int j = 0; j < carbon.size(); j++){
+                if(carbon.get(j).charAt(i) == value){
+                    carbon.remove(j);
+                    j--;
+                }
+            }
+            if(carbon.size() == 1)
+                break;
+        }
+        System.out.println(oxygen.size());
+        System.out.println(oxygen.get(0));
+        System.out.println(carbon.size());
+        System.out.println(carbon.get(0));
+        System.out.println(parseInt(oxygen.get(0),2));
+        System.out.println(parseInt(carbon.get(0),2));
     }
 
     static void D2P1() throws FileNotFoundException, IOException{
