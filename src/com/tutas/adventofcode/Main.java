@@ -13,11 +13,7 @@ import static java.lang.Integer.parseInt;
 public class Main {
 
     public static void main(String[] args) {
-        try {
-            D3P2();
-        }catch (Exception e){
-
-        }
+        new Day4();
     }
 
     static void D3P1() throws FileNotFoundException, IOException{
