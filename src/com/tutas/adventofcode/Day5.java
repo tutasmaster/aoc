@@ -55,9 +55,6 @@ public class Day5 {
                         data[(values[1] * size) + (Math.min(values[0], values[2]) + i)]++;
 
                 }else{
-                    //P2 Time
-                    /*int x = Integer.signum(values[2] - values[0]);
-                    int y = Integer.signum(values[3] - values[1]);*/
 
                     System.out.println(values[0] + "," + values[1] + " -> " + values[2] + "," + values[3]);
                     if(values[0] > values[2]){
