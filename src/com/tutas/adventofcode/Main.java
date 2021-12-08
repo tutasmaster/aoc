@@ -13,7 +13,7 @@ import static java.lang.Integer.parseInt;
 public class Main {
 
     public static void main(String[] args) {
-        new Day6();
+        new Day8();
     }
 
     static void D3P1() throws FileNotFoundException, IOException{
